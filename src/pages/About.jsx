@@ -59,27 +59,7 @@ const About = () => {
           </p>
         </div>
 
-        {/* ── Stats strip ── */}
-        <div className="stats-strip">
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="stat-number">20+</div>
-              <div className="stat-label">Années d'expérience</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">5K+</div>
-              <div className="stat-label">Patients satisfaits</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">12</div>
-              <div className="stat-label">Spécialistes</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">98%</div>
-              <div className="stat-label">Taux de satisfaction</div>
-            </div>
-          </div>
-        </div>
+       
 
         {/* ── Mission & valeurs ── */}
         <div className="about-grid">
@@ -144,7 +124,7 @@ const About = () => {
                 <div className="info-icon"><IconMail /></div>
                 <div className="info-content">
                   <h4>Email</h4>
-                  <p>contact@sourire-excellence.ma</p>
+                  <p>contact@bright-smile.ma</p>
                 </div>
               </div>
 
@@ -153,8 +133,8 @@ const About = () => {
                 <div className="info-content">
                   <h4>Horaires d'ouverture</h4>
                   <p>
-                    Lundi – Vendredi : 9h00 – 19h00<br />
-                    Samedi : 9h00 – 14h00<br />
+                    Lundi – Vendredi : <br />9h00 – 13h00 / 15h00 - 19h00<br />
+                    Samedi : 9h00 – 13h00<br />
                     Dimanche : Fermé
                   </p>
                 </div>

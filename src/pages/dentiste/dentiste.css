@@ -1,0 +1,158 @@
+/* src/pages/dentiste/dentiste.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=DM+Sans:wght@400;500&display=swap');
+
+:root {
+  --den-red:         #C0392B;
+  --den-red-light:   #f9eceb;
+  --den-red-mid:     #e8c5c2;
+  --den-dark:        #1a1a1a;
+  --den-muted:       #6b6b6b;
+  --den-border:      #e8e3df;
+  --den-bg:          #fafaf8;
+  --den-white:       #ffffff;
+  --den-green:       #1a7a4a;
+  --den-green-light: #eaf6f0;
+  --den-amber:       #cc8800;
+  --den-amber-light: #fff8e6;
+  --den-blue:        #1a5276;
+  --den-blue-light:  #d6eaf8;
+}
+
+.den-layout { display:flex; flex-direction:column; min-height:100vh; font-family:'DM Sans',sans-serif; }
+.den-body   { display:flex; flex:1; padding-top:60px; }
+.den-main   { flex:1; margin-left:220px; padding:28px 32px; background:var(--den-bg); min-height:calc(100vh - 60px); }
+
+/* Navbar */
+.den-navbar        { position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--den-border); display:flex; align-items:center; justify-content:space-between; padding:0 28px; z-index:200; }
+.den-navbar-brand  { display:flex; align-items:center; gap:10px; }
+.den-navbar-logo   { width:34px; height:34px; background:var(--den-red); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:600; }
+.den-navbar-title  { font-family:'Playfair Display',serif; font-size:16px; color:var(--den-dark); }
+.den-navbar-title em { font-style:italic; color:var(--den-red); }
+.den-navbar-right  { display:flex; align-items:center; gap:10px; }
+.den-avatar        { width:32px; height:32px; border-radius:50%; background:var(--den-red-light); border:1.5px solid var(--den-red-mid); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:var(--den-red); }
+
+/* Sidebar */
+.den-sidebar       { position:fixed; top:60px; left:0; width:220px; height:calc(100vh - 60px); background:#fff; border-right:1px solid var(--den-border); padding:20px 12px; display:flex; flex-direction:column; gap:3px; overflow-y:auto; z-index:100; }
+.den-sidebar-label { font-size:10px; font-weight:500; color:var(--den-muted); letter-spacing:.8px; text-transform:uppercase; padding:10px 10px 4px; }
+.den-nav-link      { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:8px; font-size:13px; color:var(--den-muted); cursor:pointer; text-decoration:none; transition:all .18s; border:none; background:transparent; width:100%; text-align:left; }
+.den-nav-link:hover   { background:var(--den-red-light); color:var(--den-red); }
+.den-nav-link.den-active { background:var(--den-red); color:#fff; font-weight:500; }
+.den-nav-icon      { font-size:15px; width:18px; text-align:center; }
+
+/* Page header */
+.den-page-header { margin-bottom:24px; }
+.den-page-label  { display:inline-flex; background:var(--den-red); color:#fff; font-size:10px; font-weight:500; padding:3px 12px; border-radius:12px; letter-spacing:.6px; text-transform:uppercase; margin-bottom:8px; }
+.den-page-title  { font-family:'Playfair Display',serif; font-size:26px; color:var(--den-dark); }
+.den-page-title em { font-style:italic; color:var(--den-red); }
+.den-page-sub    { font-size:13px; color:var(--den-muted); margin-top:4px; }
+
+/* Cards */
+.den-card        { background:#fff; border:0.5px solid var(--den-border); border-radius:12px; padding:18px 20px; margin-bottom:16px; }
+.den-card-title  { font-size:13px; font-weight:500; color:var(--den-dark); margin-bottom:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.den-card-action { font-size:11px; color:var(--den-red); cursor:pointer; border:none; background:none; }
+
+/* Stats */
+.den-stats-grid   { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+.den-stat-card    { background:#fff; border:0.5px solid var(--den-border); border-radius:12px; padding:16px 18px; }
+.den-stat-val     { font-family:'Playfair Display',serif; font-size:28px; font-weight:600; color:var(--den-dark); }
+.den-stat-val span { color:var(--den-red); }
+.den-stat-lbl     { font-size:12px; color:var(--den-muted); margin-top:4px; }
+.den-stat-delta   { font-size:11px; margin-top:6px; padding:2px 8px; border-radius:8px; display:inline-block; }
+.den-delta-up     { background:var(--den-green-light); color:var(--den-green); }
+.den-delta-warn   { background:var(--den-amber-light); color:var(--den-amber); }
+.den-delta-danger { background:var(--den-red-light);   color:var(--den-red); }
+
+/* Grilles */
+.den-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.den-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px; }
+.den-col-2  { grid-column:span 2; }
+
+/* Boutons */
+.den-btn-primary   { background:var(--den-red); color:#fff; border:none; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif; transition:opacity .2s; white-space:nowrap; }
+.den-btn-primary:hover { opacity:.88; }
+.den-btn-secondary { background:#fff; color:var(--den-dark); border:0.5px solid var(--den-border); padding:8px 16px; border-radius:8px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .18s; white-space:nowrap; }
+.den-btn-secondary:hover, .den-btn-secondary.den-btn-active { background:var(--den-red); color:#fff; border-color:var(--den-red); }
+.den-btn-icon { background:none; border:0.5px solid var(--den-border); border-radius:6px; padding:4px 8px; font-size:12px; cursor:pointer; color:var(--den-muted); transition:all .15s; }
+.den-btn-icon:hover { background:var(--den-red); color:#fff; border-color:var(--den-red); }
+
+/* Badges */
+.den-badge           { font-size:10px; padding:2px 8px; border-radius:6px; font-weight:500; }
+.den-badge-confirmed { background:var(--den-green-light); color:var(--den-green); }
+.den-badge-pending   { background:var(--den-amber-light); color:var(--den-amber); }
+.den-badge-urgent    { background:var(--den-red-light);   color:var(--den-red); }
+.den-badge-done      { background:#f0f0f0; color:#555; }
+.den-badge-en_cours  { background:var(--den-blue-light);  color:var(--den-blue); }
+.den-badge-termine   { background:var(--den-green-light); color:var(--den-green); }
+
+/* RDV planning */
+.den-rdv-list { display:flex; flex-direction:column; gap:8px; }
+.den-rdv-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--den-bg); border-radius:10px; border-left:3px solid transparent; cursor:pointer; transition:background .15s; }
+.den-rdv-item:hover     { background:#f0ede9; }
+.den-rdv-item.confirmed { border-left-color:var(--den-green); }
+.den-rdv-item.pending   { border-left-color:var(--den-amber); }
+.den-rdv-item.urgent    { border-left-color:var(--den-red); background:var(--den-red-light); }
+.den-rdv-item.done      { border-left-color:#ccc; opacity:.7; }
+.den-rdv-time     { font-size:13px; font-weight:600; color:var(--den-dark); min-width:48px; }
+.den-rdv-info     { flex:1; }
+.den-rdv-patient  { font-size:13px; font-weight:500; color:var(--den-dark); }
+.den-rdv-motif    { font-size:11px; color:var(--den-muted); }
+.den-rdv-alert    { font-size:10px; color:var(--den-red); margin-top:2px; }
+
+/* Dossier */
+.den-tab-bar   { display:flex; gap:6px; margin-bottom:14px; border-bottom:0.5px solid var(--den-border); padding-bottom:10px; }
+.den-tab       { font-size:12px; padding:5px 14px; border-radius:6px; cursor:pointer; border:none; background:transparent; color:var(--den-muted); transition:all .2s; }
+.den-tab.den-tab-active { background:var(--den-red); color:#fff; font-weight:500; }
+.den-info-row  { display:flex; justify-content:space-between; padding:6px 0; border-bottom:0.5px solid var(--den-border); font-size:13px; }
+.den-info-row:last-child { border-bottom:none; }
+.den-info-key  { color:var(--den-muted); }
+.den-info-val  { font-weight:500; color:var(--den-dark); }
+.den-info-val.danger { color:var(--den-red); }
+
+/* Timeline traitements */
+.den-timeline      { display:flex; flex-direction:column; gap:10px; }
+.den-timeline-item { display:flex; gap:12px; }
+.den-timeline-dot  { width:10px; height:10px; border-radius:50%; background:var(--den-red); margin-top:4px; flex-shrink:0; }
+.den-timeline-dot.done { background:var(--den-green); }
+.den-timeline-body { flex:1; padding-bottom:10px; border-bottom:0.5px solid var(--den-border); }
+.den-timeline-body:last-child { border-bottom:none; }
+.den-timeline-title { font-size:13px; font-weight:500; color:var(--den-dark); }
+.den-timeline-date  { font-size:11px; color:var(--den-muted); margin-top:2px; }
+
+/* Barre de progression */
+.den-progress-bar   { height:6px; background:var(--den-border); border-radius:3px; overflow:hidden; margin-top:6px; }
+.den-progress-fill  { height:100%; background:var(--den-red); border-radius:3px; transition:width .3s; }
+.den-progress-fill.green { background:var(--den-green); }
+
+/* Formulaires */
+.den-form-group   { margin-bottom:12px; }
+.den-form-label   { font-size:12px; color:var(--den-muted); margin-bottom:5px; display:block; }
+.den-form-control { width:100%; padding:9px 12px; border:0.5px solid var(--den-border); border-radius:8px; font-size:13px; font-family:'DM Sans',sans-serif; background:#fff; color:var(--den-dark); outline:none; transition:border-color .2s; }
+.den-form-control:focus { border-color:var(--den-red); }
+textarea.den-form-control { resize:vertical; min-height:90px; }
+
+/* Search */
+.den-search-bar  { display:flex; gap:8px; margin-bottom:16px; align-items:center; }
+.den-input       { flex:1; padding:9px 14px; border:0.5px solid var(--den-border); border-radius:8px; font-size:13px; background:#fff; outline:none; font-family:'DM Sans',sans-serif; color:var(--den-dark); transition:border-color .2s; }
+.den-input:focus { border-color:var(--den-red); }
+
+/* Modale */
+.den-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:300; }
+.den-modal-box     { background:#fff; border:0.5px solid var(--den-border); border-radius:14px; padding:22px 24px; width:460px; max-height:90vh; overflow-y:auto; }
+
+/* Ordonnance */
+.den-ordonnance-pad { background:var(--den-bg); border:0.5px dashed var(--den-border); border-radius:8px; padding:14px; min-height:100px; font-size:13px; }
+
+/* Patient list */
+.den-patient-list { display:flex; flex-direction:column; gap:4px; }
+.den-patient-row  { display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:8px; cursor:pointer; transition:background .15s; }
+.den-patient-row:hover { background:var(--den-bg); }
+.den-pat-avatar   { width:34px; height:34px; border-radius:50%; background:var(--den-red-light); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:var(--den-red); flex-shrink:0; }
+
+/* Responsive */
+@media (max-width:900px) {
+  .den-stats-grid { grid-template-columns:repeat(2,1fr); }
+  .den-grid-2, .den-grid-3 { grid-template-columns:1fr; }
+  .den-col-2 { grid-column:span 1; }
+  .den-main  { margin-left:0; padding:16px; }
+  .den-sidebar { display:none; }
+}

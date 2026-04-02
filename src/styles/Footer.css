@@ -1,103 +1,204 @@
-/* src/styles/Footer.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap');
 
+/* ===== FOOTER BRIGHT SMILE ===== */
 .footer {
-  background: var(--dark);
-  color: var(--white);
-  padding: 6rem 3rem 3rem;
+  background-color: #bd0000;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
   position: relative;
+  overflow: hidden;
 }
 
-.footer::before {
+.footer::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
+  top: -80px;
+  right: -80px;
+  pointer-events: none;
+  animation: glowPulse 6s ease-in-out infinite;
 }
 
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.1); }
+}
+
+/*
+  Ajoute cette SVG juste AVANT .footer-container dans le JSX :
+
+  <svg className="footer-wave" viewBox="0 0 900 90"
+       xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,0 L900,0 L900,20 Q720,90 540,55 Q360,20 180,65 Q90,88 0,60 Z" fill="#fff"/>
+  </svg>
+*/
+.footer-wave {
+  display: block;
+  width: 100%;
+  margin-bottom: -2px;
+}
+
+/* ── Grille principale ── */
 .footer-container {
-  max-width: 1400px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 2rem;
+  padding: 2.5rem 3rem 2rem;
+  position: relative;
+  z-index: 1;
 }
 
+.footer-section {
+  animation: fadeUp 0.6s ease both;
+}
+.footer-section:nth-child(1) { animation-delay: 0.10s; }
+.footer-section:nth-child(2) { animation-delay: 0.20s; }
+.footer-section:nth-child(3) { animation-delay: 0.30s; }
+.footer-section:nth-child(4) { animation-delay: 0.40s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Logo ── */
 .footer-section h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  position: relative;
+  display: inline-block;
 }
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  transition: width 1s ease;
+}
+.footer-section:hover h3::after { width: 100%; }
 
-.footer-section p {
-  color: var(--gray-400);
-  line-height: 1.8;
+/* ── Titres de section ── */
+.footer-section h4 {
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
   margin-bottom: 1rem;
 }
 
-.footer-section h4 {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: var(--accent);
-  font-weight: 600;
+/* ── Textes ── */
+.footer-section p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0.5rem;
 }
 
+/* ── Liens utiles ── */
 .footer-section a {
-  color: var(--gray-400);
+  display: block;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
-  transition: color 0.3s ease;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: color 0.2s, padding-left 0.2s;
 }
-
 .footer-section a:hover {
-  color: var(--white);
+  color: #fff;
+  padding-left: 6px;
 }
 
+/* ── Réseaux sociaux ── */
 .social-links {
   display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 10px;
+  margin-top: 1rem;
 }
 
 .social-link {
-  width: 45px;
-  height: 45px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  transition: background 0.25s, border-color 0.25s, transform 0.2s, border-radius 0.25s;
+  cursor: pointer;
   text-decoration: none;
-  color: var(--white);
 }
 
 .social-link:hover {
-  background: var(--primary);
-  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.70);
+  transform: translateY(-4px);
+  border-radius: 50%;
 }
 
+/* L'icône SVG à l'intérieur */
+.social-link svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/*
+  Structure HTML recommandée pour chaque icône :
+
+  <a href="#" className="social-link" title="Facebook">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+            fill="rgba(255,255,255,.9)"/>
+    </svg>
+  </a>
+
+  Paths SVG disponibles :
+  - Facebook  : <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="rgba(255,255,255,.9)"/>
+  - X/Twitter : <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="rgba(255,255,255,.9)"/>
+  - Instagram : <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="rgba(255,255,255,.9)" stroke="none"/>
+                (stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" sur le SVG parent)
+  - LinkedIn  : <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/> (fill="rgba(255,255,255,.9)")
+  - YouTube   : <rect x="2" y="5" width="20" height="14" rx="4" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.9)" stroke-width="1.5"/><polygon points="10,9 16,12 10,15" fill="rgba(255,255,255,.9)"/>
+*/
+
+/* ── Barre du bas — CENTRÉ ── */
 .footer-bottom {
-  text-align: center;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--gray-400);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 0.9rem 3rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;        /* ← centré */
 }
 
-@media (max-width: 1024px) {
-  .footer-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
+.footer-bottom p {
+  font-size: 0.76rem;
+  color: #fff;
+  margin: 0;
 }
 
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .footer-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    padding: 2rem 1.5rem 1.5rem;
+    grid-template-columns: 1fr 1fr;
   }
+  .footer-bottom {
+    padding: 0.9rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container { grid-template-columns: 1fr; }
 }

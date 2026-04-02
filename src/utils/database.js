@@ -1,4 +1,4 @@
-// // src/utils/database.js
+// src/utils/database.js
 // Base de données simulée - En production, ceci serait une vraie API
 
 export const USERS_DB = [
@@ -25,6 +25,24 @@ export const USERS_DB = [
     password: 'admin123',
     phone: '+33 1 23 45 67 89',
     role: 'admin'
+  },
+  // ── Compte dentiste ──────────────────────────────────────────────────────────
+  {
+    id: 4,
+    name: 'Dr. Benali',
+    email: 'dentiste@cabinet.com',
+    password: 'dentiste123',
+    phone: '+212 6 00 11 22 33',
+    role: 'dentiste'
+  },
+  // ── Compte secrétaire ────────────────────────────────────────────────────────
+  {
+    id: 5,
+    name: 'Fatima Alaoui',
+    email: 'secretaire@cabinet.com',
+    password: 'secretaire123',
+    phone: '+212 6 00 44 55 66',
+    role: 'secretaire'
   }
 ];
 
@@ -167,7 +185,6 @@ export const SERVICES_DB = [
 export const authenticateUser = (email, password) => {
   const user = USERS_DB.find(u => u.email === email && u.password === password);
   if (user) {
-    // Ne pas retourner le mot de passe
     const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
@@ -180,15 +197,12 @@ export const createUser = (userData) => {
   if (existingUser) {
     return { error: 'Cet email est déjà utilisé' };
   }
-  
   const newUser = {
     id: USERS_DB.length + 1,
     ...userData,
     role: 'patient'
   };
-  
   USERS_DB.push(newUser);
-  
   const { password: _, ...userWithoutPassword } = newUser;
   return userWithoutPassword;
 };
