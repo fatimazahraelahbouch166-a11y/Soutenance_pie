@@ -42,7 +42,7 @@ const NAV_TABS = [
 export default function EquipeDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard')
 const data = useEquipeData()
-
+console.log('DATA DASHBOARD:', data)
 if (!data) {
   return <div className="p-4 text-gray-500">Chargement...</div>
 }
@@ -60,7 +60,12 @@ const { stats, expenses, myBudgets } = data
       case 'ocr':       return <EquipeOCR />
       case 'reimb':     return <EquipeReimbHistory data={data} />
       case 'reports':   return <EquipeReports data={data} />
-      case 'templates': return <EquipeTemplates data={data} />
+      case 'templates': return <EquipeTemplates 
+  templates={data.templates}
+  categories={data.categories}
+  addTemplate={data.addTemplate}
+  removeTemplate={data.removeTemplate}
+/>
       case 'missions':  return <EquipeMissions data={data} />
       case 'chat':      return <EquipeChat expenses={expenses} />
       case 'summary':   return <EquipeMonthlySummary data={data} />

@@ -5,30 +5,65 @@ import Modal from '../../components/Modal'
 import { Zap, Plus, Trash2, ArrowRight } from 'lucide-react'
 import { fmt } from '../../lib/helpers'
 import { MOCK_CATEGORIES } from '../../hooks/useEquipeData'
-
-export default function EquipeTemplates({ data }) {
-  const toast    = useToast()
-  const navigate = useNavigate()
-  // const { templates, categories, addTemplate, removeTemplate } = data
-  const { 
+export default function EquipeTemplates({ 
   templates = [], 
   categories = [], 
   addTemplate, 
   removeTemplate 
-} = data || {}
-
+}) {
+  const toast    = useToast()
+  const navigate = useNavigate()
+  // const { templates, categories, addTemplate, removeTemplate } = data
+//   const { 
+//   templates = [], 
+//   categories = [], 
+//   addTemplate, 
+//   removeTemplate 
+// } = data || {}
+// const data = {
+//   templates,
+//   categories,
+//   addTemplate,
+//   removeTemplate
+// }
+// const templates = data?.templates || []
+// const categories = data?.categories || []
+// const addTemplate = data?.addTemplate
+// const removeTemplate = data?.removeTemplate
   const [open, setOpen] = useState(false)
   const [form, setForm] = useState({ name: '', category_id: '', amount: '', description: '' })
   const setF = (k, v) => setForm(p => ({ ...p, [k]: v }))
 
-  const handleCreate = () => {
-    if (!form.name.trim()) return toast.error('Erreur', 'Nom du modèle requis.')
-    addTemplate({ ...form, amount: +form.amount, category_id: +form.category_id })
-    setOpen(false)
-    setForm({ name: '', category_id: '', amount: '', description: '' })
-    toast.success('Modèle créé', `"${form.name}" ajouté à vos modèles.`)
+  // const handleCreate = () => {
+  //   if (!form.name.trim()) return toast.error('Erreur', 'Nom du modèle requis.')
+  //   addTemplate({ ...form, amount: +form.amount, category_id: +form.category_id })
+  //   setOpen(false)
+  //   setForm({ name: '', category_id: '', amount: '', description: '' })
+  //   toast.success('Modèle créé', `"${form.name}" ajouté à vos modèles.`)
+  // }
+const handleCreate = () => {
+  if (!form.name.trim()) {
+    return toast.error('Erreur', 'Nom du modèle requis.')
   }
 
+  // 🔥 حماية مهمة
+  if (typeof addTemplate !== 'function') {
+    console.error('addTemplate is not a function', addTemplate)
+    toast.error('Erreur', 'Problème technique, réessayez.')
+    return
+  }
+
+  addTemplate({
+    ...form,
+    amount: +form.amount,
+    category_id: +form.category_id
+  })
+
+  setOpen(false)
+  setForm({ name: '', category_id: '', amount: '', description: '' })
+
+  toast.success('Modèle créé', `"${form.name}" ajouté à vos modèles.`)
+}
   const handleUse = (tpl) => {
     navigate('/app/expenses/new', {
       state: {

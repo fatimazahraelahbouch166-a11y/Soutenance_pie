@@ -10,7 +10,8 @@ import ActionMenu   from '../components/ui/ActionMenu'
 import ConfirmDialog from '../components/ConfirmDialog'
 import { useToast } from '../contexts/ToastContext'
 import { fmt } from '../lib/helpers'
-import { MOCK_CATEGORIES, MOCK_TEAMS } from '../lib/mockData'
+import { useAuth } from '../contexts/AuthContext'
+import { MOCK_CATEGORIES,MOCK_TEAMS } from '../lib/mockData'
 import {
   Plus, BookOpen, AlertTriangle, CheckCircle,
   Pencil, Trash2, TrendingUp, Users, Tag,
@@ -142,7 +143,14 @@ function normalizeBudget(b) {
 export default function BudgetsPage() {
   const { toast } = useToast()
   const { state, selectors, actions } = useGlobalStore()
-
+// const { user, canEditBudgets } = useAuth()
+// const canEdit = canEditBudgets(user)
+// const isReadOnly = user?.role === 'equipe'
+const { user, canEditBudgets } = useAuth()
+const canEdit = useMemo(() => {
+  if (loading || !user) return false
+  return canEditBudgets(user)
+}, [user, loading])
   const [search, setSearch]           = useState('')
   const [filterTeam, setFilterTeam]   = useState('')
   const [filterCat, setFilterCat]     = useState('')
@@ -239,17 +247,19 @@ export default function BudgetsPage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
       {/* ── Header ── */}
-      <PageHeader
-        title="Budgets"
-        subtitle="Planifiez et suivez vos enveloppes budgétaires"
-        icon={<BookOpen size={18} />}
-        badge={filtered.length}
-        actions={
-          <button className="btn-primary" onClick={openCreate}>
-            <Plus size={14} /> Nouveau budget
-          </button>
-        }
-      />
+     <PageHeader
+  title="Budgets"
+  subtitle="Planifiez et suivez vos enveloppes budgétaires"
+  icon={<BookOpen size={18} />}
+  badge={filtered.length}
+  actions={
+    canEdit && (
+      <button className="btn-primary" onClick={openCreate}>
+        <Plus size={14} /> Nouveau budget
+      </button>
+    )
+  }
+/>
 
       {/* ── Stats ── */}
       {loading ? (

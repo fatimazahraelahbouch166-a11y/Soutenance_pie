@@ -31,6 +31,20 @@ export const ROLE_LABELS = {
   chef_equipe: "Chef d'équipe",
   equipe:      'Équipe',
 }
+export const ROLES = {
+  OWNER: 'owner',
+  CHEF: 'chef_equipe',
+  EQUIPE: 'equipe',
+}
+export const canEditBudgets = (user) => {
+  if (!user) return false
+  return ['owner', 'chef_equipe'].includes(user.role)
+}
+
+export const canViewBudgets = (user) => {
+  if (!user) return false
+  return ['owner', 'chef_equipe', 'equipe'].includes(user.role)
+}
 
 export const ROLE_COLORS = {
   owner:       'bg-indigo-50 text-indigo-700',
@@ -103,7 +117,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading, CAN, ROLE_LABELS }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, CAN, ROLE_LABELS, canEditBudgets,canViewBudgets }}>
       {children}
     </AuthContext.Provider>
   )
